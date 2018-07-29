@@ -1,11 +1,5 @@
 *** Dayze 1.0 ***
 
-Dependencies:
-
-datetime
-tkinter
-re
-
 Description:
 This application calculates the days between specified dates. It has a list of the 10 federal holidays recognized by the United States. 
 
