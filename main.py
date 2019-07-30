@@ -33,6 +33,7 @@ def reset_fields():
     t1.insert(END, 'Please enter two dates you would like to see the day difference between or pick your favorite holiday to see how long until it comes! \nYou may also type in "today" to use the current date.')
 
 # Changes the date input into a datetime object
+# 1 year later and I think I'm going to puke that I wrote it like this. However, it works so I won't change it.
 def change_date1():
     global date1
     d1 = date1_entry_value.get()
@@ -42,6 +43,8 @@ def change_date1():
         d1 = date1_entry_value.get()
         d1_list = re.findall(r"[\w']+", d1)
         d1_str = ''.join(str(i) for i in d1_list)
+        if (d1_str[0] != 0):
+            d1_str = '0' + d1_str
         date1 = datetime.strptime(d1_str, "%m%d%Y")
 
 def change_date2():
@@ -52,6 +55,8 @@ def change_date2():
     else:
         d2 = re.findall(r"[\w']+", d2)
         d2_str = ''.join(str(i) for i in d2)
+        if (d2_str[0] != 0):
+            d2_str = '0' + d2_str
         date2 = datetime.strptime(d2_str, '%m%d%Y')
 # Takes dictionary values and turns them into datetime objects
 def transform_holiday(holiday):
@@ -66,22 +71,34 @@ def transform_holiday(holiday):
     else:
         t1.insert(END, 'We are ' + str(-h_diff.days) + ' days from ' + str(dropdown_value.get()) + '.')
 
-# Mathematical brains
+# Mathematical brains and inserts into the textbox
 def diff():
     delete_textbox()
     while True:
         try:
             change_date1()
             change_date2()
-            difference = date1 - date2
+            difference = date2 - date1
+            days = str(difference.days)
+            multiYearDays = str(int(difference.days%365.25))
+            negativeMultiYearDays = str(365 - int(difference.days%365.25))
+            negativeDays = str(-difference.days)
+            years = str(int((difference.days) / 365.25))
+            negativeYears = str(-int((difference.days) / 365.25))
             if 365 > difference.days > 0:
-                t1.insert(END,'These dates are ' + str(difference.days) + ' days apart.')
+                t1.insert(END,'These dates are ' + days + ' days apart.')
             elif difference.days > 365:
-                t1.insert(END, 'These dates are ' + str(round(difference.days/365.25)) + ' years and ' +  str(round(difference.days%365.25+1)) + ' days apart.')
+                if (int(years) == 1):
+                    t1.insert(END, 'These dates are ' + years + ' year and ' + multiYearDays + ' days apart.')
+                else:
+                    t1.insert(END, 'These dates are ' + years + ' years and ' + multiYearDays + ' days apart.')
             elif -365 < difference.days < 0:
-                t1.insert(END, 'These dates are ' + str(-difference.days) + ' days apart.')
+                t1.insert(END, 'These dates are ' + negativeDays + ' days apart.')
             else:
-                t1.insert(END, 'These dates are ' + str(round(-difference.days/365.25)) + ' years and ' + str(round(difference.days%365.25+1)) + ' days apart.')
+                if (int(negativeYears) == 1):
+                    t1.insert(END, 'These dates are ' + negativeYears + ' year and ' + negativeMultiYearDays + ' days apart.')
+                else:
+                    t1.insert(END, 'These dates are ' + negativeYears + ' years and ' + negativeMultiYearDays + ' days apart.')
         except ValueError:
             t1.insert(END, 'One of the values was entered improperly. Please try again.')
         break
