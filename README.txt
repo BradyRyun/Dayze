@@ -1,4 +1,4 @@
-*** Dayze 1.0 ***
+*** Dayze 1.1 ***
 
 Description:
 This application calculates the days between specified dates. It has a list of the 10 federal holidays recognized by the United States. 
@@ -21,10 +21,16 @@ Please let me know if you find any bugs and I will do my best to fix them prompt
 
 As the developer, I want to hear the feedback from the user! I am open to suggestions for improving the program. This is my first program as of right now and I want to know how I can improve. I was unsure about deleting the first/second date lines when you click on the text box, so please give me some feedback on it!
 
-Other developers, please feel free to send in contributions. For contributions, please email to ryunwriting@gmail.com.
+Other developers, please feel free to send in contributions. For contributions, please email to bradyryun@gmail.com
 
 Use the following format:
 
 Subject: Dayze - Contribution
 
 Body: Provide the lines of code you wish to transform and your reasoning for changing the code. 
+
+What I learned from this project:
+  Tkiner library
+  Datetime
+  Functions
+  Lists/Dictionaries
