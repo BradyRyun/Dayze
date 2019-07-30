@@ -3,6 +3,9 @@
 Description:
 This application calculates the days between specified dates. It has a list of the 10 federal holidays recognized by the United States. 
 
+Dependencies:
+tkinter
+
 Use of the program:
 
 The program is simple.
@@ -28,6 +31,9 @@ Use the following format:
 Subject: Dayze - Contribution
 
 Body: Provide the lines of code you wish to transform and your reasoning for changing the code. 
+
+You can use the exe file or run through Python interpreter
+In the file path, open terminal and type python main.py
 
 What I learned from this project:
   Tkiner library
